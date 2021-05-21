@@ -15,25 +15,39 @@ const unsigned char Tabela[] = {0x40, 0x79, 0x24, 0x30,
                                 0x00, 0x18, 0x08, 0x03, 
                                 0x46, 0x21, 0x06, 0x0E}; 
 
+const unsigned char OctalTable[] = { }
+
 int main(void){
 
     UCSR0B = 0x00;
 
     unsigned char counter = 0;
 
-    while(true){
-        if(!tst_bit(PINB, BUTTON_INCREMENT)){ 
+    while( true ){
+        if( !tst_bit(PINB, BUTTON_INCREMENT) ){ 
             counter++;
             PORTD = pgm_read_byte(&Tabela[counter]);
             _delay_ms(10); 
-            while(!tst_bit(PINB,BUTTON_INCREMENT));
+            while( !tst_bit(PINB,BUTTON_INCREMENT) );
         }
 
-        if(!tst_bit((PINB, BUTTON_DECREMENT)){
+        if( !tst_bit((PINB, BUTTON_DECREMENT) ){
             counter--;
             _delay_ms(10); 
             PORTD = pgm_read_byte(&Tabela[counter]);
-            while(!tst_bit(PINB,BUTTON_DECREMENT));
+            while( !tst_bit(PINB,BUTTON_DECREMENT) );
         }
+    }
+}
+
+static inline void decimal_octal_converter( long decimal ){
+    int octal[100], i = 1 ;
+    while ( decimal != 0 ){
+        octal[i++] = decimal % 8;
+        decimal = decimal / 8;
+    }
+
+    for( int j = i - 1; j > 0; j--){
+        return octal[j];
     }
 }
