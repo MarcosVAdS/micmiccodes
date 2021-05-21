@@ -21,7 +21,7 @@ int main(void){
 
     UCSR0B = 0x00;
 
-    unsigned char counter = 0;
+    int counter = 00;
 
     while( true ){
         if( !tst_bit(PINB, BUTTON_INCREMENT) ){ 
@@ -33,8 +33,8 @@ int main(void){
             }
         }
 
-        if( !tst_bit((PINB, BUTTON_DECREMENT) ){
-            if(counter >= 0){
+        if( !tst_bit((PINB, BUTTON_DECREMENT)) ){
+            if(counter >= 00){
                 counter--;
                 _delay_ms(10); 
                 PORTD = pgm_read_byte(&Tabela[counter]);
@@ -43,8 +43,7 @@ int main(void){
         }
     }
 }
-
-static inline void decimal_octal_converter( long decimal ){
+static inline decimal_octal_converter( long decimal ){
     int octal[100], i = 1 ;
     while ( decimal != 0 ){
         octal[i++] = decimal % 8;
