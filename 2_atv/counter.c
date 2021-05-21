@@ -25,17 +25,21 @@ int main(void){
 
     while( true ){
         if( !tst_bit(PINB, BUTTON_INCREMENT) ){ 
-            counter++;
-            PORTD = pgm_read_byte(&Tabela[counter]);
-            _delay_ms(10); 
-            while( !tst_bit(PINB,BUTTON_INCREMENT) );
+            if(counter <= 77){
+                counter++;
+                PORTD = pgm_read_byte(&Tabela[counter]);
+                _delay_ms(10); 
+                while( !tst_bit(PINB,BUTTON_INCREMENT) );
+            }
         }
 
         if( !tst_bit((PINB, BUTTON_DECREMENT) ){
-            counter--;
-            _delay_ms(10); 
-            PORTD = pgm_read_byte(&Tabela[counter]);
-            while( !tst_bit(PINB,BUTTON_DECREMENT) );
+            if(counter >= 0){
+                counter--;
+                _delay_ms(10); 
+                PORTD = pgm_read_byte(&Tabela[counter]);
+                while( !tst_bit(PINB,BUTTON_DECREMENT) );
+            }
         }
     }
 }
